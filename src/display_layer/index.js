@@ -22,15 +22,37 @@ export class DisplayView {
   }
 
   createBlankView() {
-    const { rowHeaderWidth, cellHeight } = this.ds.options;
-    const blank = elt("div", {
+    const { rowHeaderWidth, cellHeight, scrollbarSize } = this.ds.options;
+    // The upper left
+    this.wrapper.appendChild(elt("div", {
       class: "blank",
       style: {
         width: `${rowHeaderWidth}px`,
         height: `${cellHeight}px`,
       },
-    });
-    this.wrapper.appendChild(blank);
+    }));
+    // The upper right
+    this.wrapper.appendChild(elt("div", {
+      class: "blank",
+      style: {
+        width: `${scrollbarSize}px`,
+        height: `${cellHeight}px`,
+        position: "absolute",
+        top: "0px",
+        right: "0px",
+      },
+    }));
+    // The lowwer left
+    this.wrapper.appendChild(elt("div", {
+      class: "blank",
+      style: {
+        width: `${rowHeaderWidth}px`,
+        height: `${scrollbarSize}px`,
+        position: "absolute",
+        bottom: "0px",
+        left: "0px",
+      },
+    }));
   }
 
 }

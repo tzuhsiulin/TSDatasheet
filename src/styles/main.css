@@ -1,4 +1,4 @@
-body {
+html, body {
   padding: 0;
   margin: 0;
   overflow: hidden;
@@ -7,26 +7,37 @@ body {
 }
 
 .TSDatasheet {
-  width: 100%;
+  width: inherit;
+  height: inherit;
   position: relative;
+}
+
+.TSDatasheet-display-layer {
+  width: inherit;
+  height: inherit;
 }
 
 .TSDatasheet-display-layer .blank {
   background-color: #F3F3F3;
+  z-index: 2;
 }
 
 .TSDatasheet-gridview {
   overflow: hidden;
 }
 
-.TSDatasheet-gridview table {
+.TSDatasheet-gridview table, .TSDatasheet-header-row, .TSDatasheet-header-col {
   border-collapse: collapse;
   table-layout: fixed;
 }
 
-.TSDatasheet-gridview td {
+.TSDatasheet-gridview td, .row-header-item, .col-header-item {
   border: 1px solid #D8D8D8;
   box-sizing: border-box;
+}
+
+.row-header-item {
+  border-right: 0;
 }
 
 /*.TSDatasheet-blank {

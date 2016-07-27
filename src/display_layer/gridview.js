@@ -18,7 +18,7 @@ export class GridView {
       const items = [];
       for (let j = 0; j < ds.visibleCount.col; j++) {
         const { width: cWidth, height: cHeight } = ds.getCellSize(new Pos(i, j));
-        items.push(elt("td", { style: { width: `${cWidth}px`, height: `${cHeight}px` } }));
+        items.push(elt("td", { style: { minWidth: `${cWidth}px`, height: `${cHeight}px` } }));
       }
       trItems.push(elt("tr", null, items));
     }
@@ -28,8 +28,8 @@ export class GridView {
       style: {
         width, height,
         position: "absolute",
-        top: `${cellHeight + 1}px`,
-        left: `${rowHeaderWidth + 1}px`,
+        top: `${cellHeight}px`,
+        left: `${rowHeaderWidth}px`,
       },
     }, table);
     this.displayView.wrapper.appendChild(gridview);
