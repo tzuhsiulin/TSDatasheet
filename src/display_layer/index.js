@@ -4,7 +4,7 @@ import { elt } from "../utils/dom";
 
 export const prefix = "TSDatasheet-display-layer";
 
-export class DisplayView {
+export class DisplayLayer {
 
   constructor(ds) {
     this.ds = ds;
@@ -51,6 +51,17 @@ export class DisplayView {
         position: "absolute",
         bottom: "0px",
         left: "0px",
+      },
+    }));
+    // The lowwer right
+    this.wrapper.appendChild(elt("div", {
+      class: "blank",
+      style: {
+        width: `${scrollbarSize}px`,
+        height: `${scrollbarSize}px`,
+        position: "absolute",
+        bottom: "0px",
+        right: "0px",
       },
     }));
   }

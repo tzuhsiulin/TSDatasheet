@@ -1,5 +1,5 @@
-import { DisplayView } from "../display_layer";
-import { Selection } from "../ctrl_layer";
+import { DisplayLayer } from "../display_layer";
+import { CtrlLayer } from "../ctrl_layer";
 import { elt } from "../utils/dom";
 import { Pos } from "./pos";
 
@@ -16,7 +16,8 @@ export default class Datasheet {
     this.currPos = new Pos(0, 0);
     this.getVisibleSize();
 
-    this.displayView = new DisplayView(this);
+    this.displayLayer = new DisplayLayer(this);
+    this.ctrlLayer = new CtrlLayer(this);
     // this.select = new Selection(this);
   }
 
