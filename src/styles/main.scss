@@ -6,10 +6,12 @@
 %defaultTableCell {
   border: 1px solid #D8D8D8;
   box-sizing: border-box;
+  user-select: none;
 }
 
 %defaultHeaderCell {
   background-color: #F3F3F3;
+  user-select: none;
 }
 
 html, body {
