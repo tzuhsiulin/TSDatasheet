@@ -6,7 +6,7 @@ const precss = require("precss");
 const postcssCalc = require("postcss-calc");
 
 gulp.task("scss", () => {
-  return gulp.src("src/styles/main.css")
+  return gulp.src("src/styles/main.scss")
     .pipe(postcss([
       precss(),
       postcssCalc(),
@@ -16,5 +16,5 @@ gulp.task("scss", () => {
 });
 
 gulp.task("watch", () => {
-  gulp.watch("src/styles/**/*css", ["scss"]);
+  gulp.watch("src/styles/**/*scss", ["scss"]);
 });
