@@ -1,35 +1,32 @@
+import { elt } from "../utils/dom";
+
+export const prefix = "TSDatasheet-selector";
+
 export class Selection {
 
-  constructor(context) {
-    this.context = context;
-    this.handler = {
-      mousedown: this.mousedownListener,
-    };
-    this.range = null;
-
-    this.bindEventListener();
+  constructor(ctrlLayer) {
+    this.ds = ctrlLayer.ds;
+    this.ctrlLayer = ctrlLayer;
+    this.selector = null;
+    this.ds.eventManager.on("selectionChange", this.setSelection.bind(this));
+    this.init();
   }
 
-  bindEventListener() {
-    const container = this.context.gridview.container;
-    Object.keys(this.handler).forEach(key => {
-      container.addEventListener(key, this.handler[key].bind(this));
-    });
+  init() {
+    const selector = elt("div", { id: prefix });
+    this.ctrlLayer.wrapper.appendChild(selector);
+    this.selector = selector;
   }
 
-  mousedownListener(e) {
-    const { clientX, clientY } = e;
-    const container = this.context.gridview.container;
-    const {
-      left: containerLeft,
-      top: containerTop,
-    } = container.getBoundingClientRect();
-    const xPos = clientX - containerLeft + container.scrollLeft;
-    const yPos = clientY - containerTop + container.scrollTop;
-    const x = Math.floor(xPos / 105);
-    const y = Math.floor(yPos / 25);
-    // this.range = new Range(x, y);
-    // this.context.signal("select", this.range);
+  setSelection(pos, target) {
+    const { width, height} = this.ds.getCellSize(pos);
+    const { left, top } = target.getBoundingClientRect();
+    this.selector.style.display = 'block';
+    this.selector.style.top = `${top}px`;
+    this.selector.style.left = `${left}px`;
+    this.selector.style.width = `${width}px`;
+    this.selector.style.height = `${height}px`;
   }
 
 }
+

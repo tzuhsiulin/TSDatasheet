@@ -1,6 +1,7 @@
 import { DisplayLayer } from "../display_layer";
 import { CtrlLayer } from "../ctrl_layer";
 import { elt } from "../utils/dom";
+import { EventManager } from "../utils/eventmanager";
 import { Pos } from "./pos";
 
 export const prefix = "TSDatasheet";
@@ -10,27 +11,14 @@ export default class Datasheet {
   constructor(options) {
     this.options = this.initOptions(options);
     this.wrapper = this.createContainer();
-    this.listeners = {};
 
     this.visibleCount = { row: 0, col: 0 };
     this.currPos = new Pos(0, 0);
     this.getVisibleSize();
 
+    this.eventManager = new EventManager();
     this.displayLayer = new DisplayLayer(this);
     this.ctrlLayer = new CtrlLayer(this);
-    // this.select = new Selection(this);
-  }
-
-  on(eventName, func) {
-    if (!this.listeners[eventName]) this.listeners[eventName] = [];
-    this.listeners[eventName].push(func);
-  }
-
-  signal(eventName, ...args) {
-    if (!this.listeners[eventName]) return;
-    for (let i = 0; i < this.listeners[eventName].length; i++) {
-      this.listeners[eventName][i](...args);
-    }
   }
 
   initOptions(options) {

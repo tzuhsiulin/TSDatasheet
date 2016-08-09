@@ -5,8 +5,9 @@ export default class Resizer {
   constructor(context, container) {
     this.context = context;
     this.container = container;
-
     this.init();
+
+    var a = '123';
   }
 
   init() {
@@ -22,3 +23,4 @@ export default class Resizer {
   }
 
 }
+

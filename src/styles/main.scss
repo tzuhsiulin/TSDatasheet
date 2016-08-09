@@ -30,17 +30,19 @@ html, body {
     width: inherit;
     height: inherit;
     z-index: 2;
-    .blank {
+    > .blank {
       background-color: #F8F8F8;
       border: 1px solid #D9D9D9;
       z-index: 2;
+      box-sizing: border-box;
     }
-    .TSDatasheet-gridview {
+    > .TSDatasheet-gridview {
       overflow: hidden;
+      z-index: 2;
       table { @extend %defaultTable; }
       td { @extend %defaultTableCell; }
     }
-    .TSDatasheet-header {
+    > .TSDatasheet-header {
       &-row {
         @extend %defaultTable;
         .row-header-item {
@@ -59,14 +61,24 @@ html, body {
     }
   }
   &-ctrl-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: inherit;
     height: inherit;
-    z-index: 3;
-    .TSDatasheet-row-scrollbar {
+    z-index: 1;
+    > .TSDatasheet-row-scrollbar {
       background-color: red;
     }
-    .TSDatasheet-col-scrollbar {
+    > .TSDatasheet-col-scrollbar {
       background-color: red;
+    }
+    #TSDatasheet-selector {
+      position: absolute;
+      left: 0;
+      top: 0;
+      border: 2px solid blue;
+      display: none;
     }
   }
 }
