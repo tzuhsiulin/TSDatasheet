@@ -1,3 +1,5 @@
+import "../styles/display_layer.scss";
+
 import { GridView } from "./gridview";
 import { Header } from "./header";
 import { elt } from "../utils/dom";

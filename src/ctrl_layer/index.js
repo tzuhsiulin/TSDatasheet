@@ -1,3 +1,5 @@
+import "../styles/ctrl_layer.scss";
+
 // export { Resizer } from "./resizer";
 // export { Selection } from "./selection";
 import { RowScrollBar, ColScrollBar } from "./scrollbar";

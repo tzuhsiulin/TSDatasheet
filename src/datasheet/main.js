@@ -1,3 +1,5 @@
+import "../styles/main.scss";
+
 import { DisplayLayer } from "../display_layer";
 import { CtrlLayer } from "../ctrl_layer";
 import { elt } from "../utils/dom";

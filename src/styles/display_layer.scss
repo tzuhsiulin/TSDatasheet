@@ -1,0 +1,45 @@
+%defaultTable {
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+%defaultTableCell {
+  border: 1px solid #D8D8D8;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+.TSDatasheet--display-layer {
+  width: inherit;
+  height: inherit;
+  z-index: 2;
+  > .blank {
+    background-color: #F8F8F8;
+    border: 1px solid #D9D9D9;
+    z-index: 2;
+    box-sizing: border-box;
+  }
+  > .TSDatasheet-gridview {
+    overflow: hidden;
+    z-index: 2;
+    table { @extend %defaultTable; }
+    td { @extend %defaultTableCell; }
+  }
+  > .TSDatasheet-header {
+    &-row {
+      @extend %defaultTable;
+      .row-header-item {
+        @extend %defaultTableCell;
+        @extend %defaultHeaderCell;
+        border-right: 0;
+      }
+    }
+    &-col {
+      @extend %defaultTable;
+      .col-header-item {
+        @extend %defaultTableCell;
+        @extend %defaultHeaderCell;
+      }
+    }
+  }
+}

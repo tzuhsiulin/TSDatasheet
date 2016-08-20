@@ -23,6 +23,10 @@ module.exports = {
           presets: ["es2015"],
         },
       },
+      {
+        test: /\.scss$/,
+        loader: "style-loader!css-loader!postcss-loader",
+      }
     ],
   },
   resolveLoader: {
