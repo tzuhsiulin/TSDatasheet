@@ -6,7 +6,7 @@ import { Header } from "./header";
 import { RowScrollBar, ColScrollBar } from "./scrollbar";
 import { Selection } from "./selection";
 
-import { elt } from "../utils/dom";
+import { elt, createFragment } from "../utils/dom";
 import { EventManager } from "../utils/eventmanager";
 import { Pos } from "./pos";
 
@@ -23,12 +23,26 @@ export default class Datasheet {
     this.getVisibleSize();
 
     this.eventManager = new EventManager();
-    this.blank = new Blank(this);
-    this.header = new Header(this);
-    this.gridview = new GridView(this);
-    this.rowScrollBar = new RowScrollBar(this);
-    this.colScrollBar = new ColScrollBar(this);
-    this.selection = new Selection(this);
+    this.initComponents();
+  }
+
+  initComponents() {
+    const fragment = createFragment();
+    const components = [Blank, Header, GridView, RowScrollBar, ColScrollBar, Selection];
+    for (let i = 0; i < components.length; i++) {
+      const className = components[i].name;
+      const component = new (components[i])(this);
+      const items = component.init();
+      if (Array.isArray(items)) {
+        for (let j = 0; j < items.length; j++) {
+          fragment.appendChild(items[j]);
+        }
+      } else {
+        fragment.appendChild(items);
+      }
+      this[className.toLowerCase()] = component;
+    }
+    this.wrapper.appendChild(fragment);
   }
 
   initOptions(options) {

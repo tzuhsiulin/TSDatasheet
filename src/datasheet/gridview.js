@@ -8,12 +8,12 @@ export const prefix = "TSDatasheet-gridview";
 export class GridView {
   constructor(ds) {
     this.ds = ds;
-    this.wrapper = ds.wrapper;
-    this.gridview = this.createTable(this.ds);
+    this.gridview = null;
     this.cells = [];
   }
 
-  createTable(ds) {
+  init() {
+    const ds = this.ds;
     const { cellHeight, rowHeaderWidth } = ds.options;
     const { width, height } = ds.gridviewSize;
     const trItems = [];
@@ -38,7 +38,7 @@ export class GridView {
         left: `${rowHeaderWidth}px`,
       },
     }, table);
-    this.wrapper.appendChild(gridview);
+    this.gridview = gridview;
     return gridview;
   }
 

@@ -9,16 +9,21 @@ export class Header {
 
   constructor(ds) {
     this.ds = ds;
-    this.wrapper = ds.wrapper;
-    this.createContainer();
-    this.setColHeaderItem();
-    this.setRowHeaderItem();
+    this.colHeaderContainer = this.colHeader = this.rowHeader = null;
   }
 
-  createContainer() {
+  init() {
+    this.createHeaderContainer();
+    this.setColHeaderItem();
+    this.setRowHeaderItem();
+    return [this.colHeaderContainer, this.rowHeader];
+  }
+
+  createHeaderContainer() {
     const { rowHeaderWidth, cellHeight } = this.ds.options;
-    const colHeader = elt("tr");
-    this.wrapper.appendChild(elt("table", {
+    // col
+    this.colHeader = elt("tr");
+    this.colHeaderContainer = elt("table", {
       class: `${prefix}-col`,
       style: {
         position: "absolute",
@@ -26,10 +31,9 @@ export class Header {
         left: `${rowHeaderWidth}px`,
         height: `${cellHeight}px`,
       },
-    }, colHeader));
-    this.colHeader = colHeader;
-
-    const rowHeader = elt("table", {
+    }, this.colHeader);
+    // row
+    this.rowHeader = elt("table", {
       class: `${prefix}-row`,
       style: {
         position: "absolute",
@@ -38,8 +42,6 @@ export class Header {
         width: `${rowHeaderWidth}px`,
       },
     });
-    this.wrapper.appendChild(rowHeader);
-    this.rowHeader = rowHeader;
   }
 
   setColHeaderItem() {

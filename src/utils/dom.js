@@ -1,4 +1,14 @@
 
+export function createFragment(child) {
+  const fragment = document.createDocumentFragment();
+  if (child) {
+    for (let i = 0; i < child.length; i++) {
+      fragment.appendChild(child[i]);
+    }
+  }
+  return fragment;
+}
+
 export function elt(name, attrs, child) {
   const dom = document.createElement(name);
   if (attrs) {

@@ -8,7 +8,6 @@ export class Selection {
 
   constructor(ds) {
     this.ds = ds;
-    this.wrapper = ds.wrapper;
     this.selector = null;
     ds.eventManager.on("selectionChange", this.setSelection.bind(this));
     this.init();
@@ -16,11 +15,12 @@ export class Selection {
 
   init() {
     const selector = elt("div", { id: prefix });
-    this.wrapper.appendChild(selector);
     this.selector = selector;
 
     const autofill = elt("div", { class: "autofill" });
     selector.appendChild(autofill);
+
+    return selector;
   }
 
   setSelection(pos, target) {

@@ -7,11 +7,10 @@ export class RowScrollBar {
 
   constructor(ds) {
     this.ds = ds;
-    this.wrapper = ds.wrapper;
-    this.scrollbar = this.createContainer();
+    this.scrollbar = null;
   }
 
-  createContainer() {
+  init() {
     const { cellHeight, scrollbarSize } = this.ds.options;
     const { height } = this.ds.gridviewSize;
     const scrollbar = elt("div", {
@@ -24,7 +23,7 @@ export class RowScrollBar {
         top: `${cellHeight}px`,
       },
     });
-    this.wrapper.appendChild(scrollbar);
+    this.scrollbar = scrollbar;
     return scrollbar;
   }
 
@@ -35,11 +34,10 @@ export class ColScrollBar {
 
   constructor(ds) {
     this.ds = ds;
-    this.wrapper = ds.wrapper;
-    this.scrollbar = this.createContainer();
+    this.scrollbar = null;
   }
 
-  createContainer() {
+  init() {
     const { rowHeaderWidth, scrollbarSize } = this.ds.options;
     const { width } = this.ds.gridviewSize;
     const scrollbar = elt("div", {
@@ -52,7 +50,7 @@ export class ColScrollBar {
         bottom: "0px",
       },
     });
-    this.wrapper.appendChild(scrollbar);
+    this.scrollbar = scrollbar;
     return scrollbar;
   }
 
