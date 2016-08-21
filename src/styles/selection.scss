@@ -7,4 +7,13 @@
   display: none;
   z-index: 2;
   box-sizing: border-box;
+  > .autofill {
+    position: absolute;
+    right: -4px;
+    bottom: -4px;
+    background-color: blue;
+    width: 8px;
+    height: 8px;
+    cursor: crosshair;
+  }
 }

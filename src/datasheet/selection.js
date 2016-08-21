@@ -18,6 +18,9 @@ export class Selection {
     const selector = elt("div", { id: prefix });
     this.wrapper.appendChild(selector);
     this.selector = selector;
+
+    const autofill = elt("div", { class: "autofill" });
+    selector.appendChild(autofill);
   }
 
   setSelection(pos, target) {
