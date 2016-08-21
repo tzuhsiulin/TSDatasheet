@@ -1,4 +1,4 @@
-import "../styles/selector.scss";
+import "../styles/selection.scss";
 
 import { elt } from "../utils/dom";
 
