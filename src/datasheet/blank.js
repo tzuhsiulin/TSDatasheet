@@ -1,29 +1,16 @@
-import "../styles/display_layer.scss";
+import "../styles/blank.scss";
 
-import { GridView } from "./gridview";
-import { Header } from "./header";
 import { elt } from "../utils/dom";
 
-export const prefix = "TSDatasheet-display-layer";
-
-export class DisplayLayer {
+export class Blank {
 
   constructor(ds) {
     this.ds = ds;
-    this.wrapper = this.createContainer();
-    this.createBlankView();
-
-    this.gridview = new GridView(this);
-    this.header = new Header(this);
+    this.wrapper = ds.wrapper;
+    this.init();
   }
 
-  createContainer() {
-    const wrapper = elt("div", { class: prefix });
-    this.ds.wrapper.appendChild(wrapper);
-    return wrapper;
-  }
-
-  createBlankView() {
+  init() {
     const { rowHeaderWidth, cellHeight, scrollbarSize } = this.ds.options;
     // The upper left
     this.wrapper.appendChild(elt("div", {
@@ -69,5 +56,3 @@ export class DisplayLayer {
   }
 
 }
-
-export { GridView, Header };

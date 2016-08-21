@@ -1,3 +1,5 @@
+import "../styles/header.scss";
+
 import { elt } from "../utils/dom";
 import { numToAlphabet } from "../utils/utils";
 
@@ -5,9 +7,9 @@ export const prefix = "TSDatasheet-header";
 
 export class Header {
 
-  constructor(displayView) {
-    this.ds = displayView.ds;
-    this.displayView = displayView;
+  constructor(ds) {
+    this.ds = ds;
+    this.wrapper = ds.wrapper;
     this.createContainer();
     this.setColHeaderItem();
     this.setRowHeaderItem();
@@ -16,7 +18,7 @@ export class Header {
   createContainer() {
     const { rowHeaderWidth, cellHeight } = this.ds.options;
     const colHeader = elt("tr");
-    this.displayView.wrapper.appendChild(elt("table", {
+    this.wrapper.appendChild(elt("table", {
       class: `${prefix}-col`,
       style: {
         position: "absolute",
@@ -36,7 +38,7 @@ export class Header {
         width: `${rowHeaderWidth}px`,
       },
     });
-    this.displayView.wrapper.appendChild(rowHeader);
+    this.wrapper.appendChild(rowHeader);
     this.rowHeader = rowHeader;
   }
 

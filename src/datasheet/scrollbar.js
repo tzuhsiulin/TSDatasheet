@@ -1,11 +1,13 @@
+import "../styles/scrollbar.scss";
+
 import { elt } from "../utils/dom";
 
 export const rowPrefix = "TSDatasheet-row-scrollbar";
 export class RowScrollBar {
 
-  constructor(ctrlLayer) {
-    this.ds = ctrlLayer.ds;
-    this.ctrlLayer = ctrlLayer;
+  constructor(ds) {
+    this.ds = ds;
+    this.wrapper = ds.wrapper;
     this.scrollbar = this.createContainer();
   }
 
@@ -22,7 +24,7 @@ export class RowScrollBar {
         top: `${cellHeight}px`,
       },
     });
-    this.ctrlLayer.wrapper.appendChild(scrollbar);
+    this.wrapper.appendChild(scrollbar);
     return scrollbar;
   }
 
@@ -31,9 +33,9 @@ export class RowScrollBar {
 export const colPrefix = "TSDatasheet-col-scrollbar";
 export class ColScrollBar {
 
-  constructor(ctrlLayer) {
-    this.ds = ctrlLayer.ds;
-    this.ctrlLayer = ctrlLayer;
+  constructor(ds) {
+    this.ds = ds;
+    this.wrapper = ds.wrapper;
     this.scrollbar = this.createContainer();
   }
 
@@ -50,7 +52,7 @@ export class ColScrollBar {
         bottom: "0px",
       },
     });
-    this.ctrlLayer.wrapper.appendChild(scrollbar);
+    this.wrapper.appendChild(scrollbar);
     return scrollbar;
   }
 

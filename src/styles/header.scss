@@ -1,0 +1,19 @@
+@import "./default_table.scss";
+
+.TSDatasheet-header {
+  &-row {
+    @extend %defaultTable;
+    .row-header-item {
+      @extend %defaultTableCell;
+      @extend %defaultHeaderCell;
+      border-right: 0;
+    }
+  }
+  &-col {
+    @extend %defaultTable;
+    .col-header-item {
+      @extend %defaultTableCell;
+      @extend %defaultHeaderCell;
+    }
+  }
+}

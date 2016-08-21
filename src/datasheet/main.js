@@ -1,7 +1,11 @@
 import "../styles/main.scss";
 
-import { DisplayLayer } from "../display_layer";
-import { CtrlLayer } from "../ctrl_layer";
+import { Blank } from "./blank";
+import { GridView } from "./gridview";
+import { Header } from "./header";
+import { RowScrollBar, ColScrollBar } from "./scrollbar";
+import { Selection } from "./selection";
+
 import { elt } from "../utils/dom";
 import { EventManager } from "../utils/eventmanager";
 import { Pos } from "./pos";
@@ -19,8 +23,12 @@ export default class Datasheet {
     this.getVisibleSize();
 
     this.eventManager = new EventManager();
-    this.displayLayer = new DisplayLayer(this);
-    this.ctrlLayer = new CtrlLayer(this);
+    this.blank = new Blank(this);
+    this.header = new Header(this);
+    this.gridview = new GridView(this);
+    this.rowScrollBar = new RowScrollBar(this);
+    this.colScrollBar = new ColScrollBar(this);
+    this.selection = new Selection(this);
   }
 
   initOptions(options) {

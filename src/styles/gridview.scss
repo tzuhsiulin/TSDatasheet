@@ -1,0 +1,8 @@
+@import "./default_table.scss";
+
+.TSDatasheet-gridview {
+  overflow: hidden;
+  z-index: 2;
+  table { @extend %defaultTable; }
+  td { @extend %defaultTableCell; }
+}

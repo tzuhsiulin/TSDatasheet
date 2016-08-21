@@ -1,12 +1,14 @@
+import "../styles/gridview.scss";
+
 import { elt } from "../utils/dom";
 import { Pos } from "../datasheet/pos";
 
 export const prefix = "TSDatasheet-gridview";
 
 export class GridView {
-  constructor(displayView) {
-    this.ds = displayView.ds;
-    this.displayView = displayView;
+  constructor(ds) {
+    this.ds = ds;
+    this.wrapper = ds.wrapper;
     this.gridview = this.createTable(this.ds);
     this.cells = [];
   }
@@ -36,7 +38,7 @@ export class GridView {
         left: `${rowHeaderWidth}px`,
       },
     }, table);
-    this.displayView.wrapper.appendChild(gridview);
+    this.wrapper.appendChild(gridview);
     return gridview;
   }
 
