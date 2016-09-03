@@ -1,14 +1,16 @@
-import "../styles/selection.scss";
+require("../styles/selection.scss");
 
-import { elt } from "../utils/dom";
+const { elt } = require("../utils/dom");
+const { Pos } = require("../datasheet/pos");
 
-export const prefix = "TSDatasheet-selector";
+const prefix = "TSDatasheet-selector";
 
-export class Selection {
+class Selection {
 
   constructor(ds) {
     this.ds = ds;
     this.selector = null;
+    this.currentPos = null;
     ds.eventManager.on("selectionChange", this.setSelection.bind(this));
     this.init();
   }
@@ -20,10 +22,16 @@ export class Selection {
     const autofill = elt("div", { class: "autofill" });
     selector.appendChild(autofill);
 
+    selector.addEventListener("dblclick", e => {
+      this.ds.eventManager.signal("input", e.target, this.currentPos);
+    });
+
     return selector;
   }
 
-  setSelection(pos, target) {
+  setSelection(target, pos) {
+    this.currentPos = pos;
+
     const { width, height } = this.ds.getCellSize(pos);
     const { left, top } = target.getBoundingClientRect();
     this.selector.style.display = "block";
@@ -34,3 +42,4 @@ export class Selection {
   }
 
 }
+exports.Selection = Selection;

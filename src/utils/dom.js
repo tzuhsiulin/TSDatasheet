@@ -1,5 +1,5 @@
 
-export function createFragment(child) {
+function createFragment(child) {
   const fragment = document.createDocumentFragment();
   if (child) {
     for (let i = 0; i < child.length; i++) {
@@ -8,8 +8,9 @@ export function createFragment(child) {
   }
   return fragment;
 }
+exports.createFragment = createFragment;
 
-export function elt(name, attrs, child) {
+function elt(name, attrs, child) {
   const dom = document.createElement(name);
   if (attrs) {
     Object.keys(attrs).forEach(key => {
@@ -33,3 +34,4 @@ export function elt(name, attrs, child) {
   }
   return dom;
 }
+exports.elt = elt;

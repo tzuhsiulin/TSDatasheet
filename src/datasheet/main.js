@@ -1,18 +1,13 @@
-import "../styles/main.scss";
+require("../styles/main.scss");
+const { Blank, GridView, Header, RowScrollBar, ColScrollBar,
+  Selection, Input } = require("../components");
+const { elt, createFragment } = require("../utils/dom");
+const { EventManager } = require("../utils/eventmanager");
+const { Pos } = require("./pos");
 
-import { Blank } from "./blank";
-import { GridView } from "./gridview";
-import { Header } from "./header";
-import { RowScrollBar, ColScrollBar } from "./scrollbar";
-import { Selection } from "./selection";
+const prefix = "TSDatasheet";
 
-import { elt, createFragment } from "../utils/dom";
-import { EventManager } from "../utils/eventmanager";
-import { Pos } from "./pos";
-
-export const prefix = "TSDatasheet";
-
-export default class Datasheet {
+class Datasheet {
 
   constructor(options) {
     this.options = this.initOptions(options);
@@ -28,7 +23,7 @@ export default class Datasheet {
 
   initComponents() {
     const fragment = createFragment();
-    const components = [Blank, Header, GridView, RowScrollBar, ColScrollBar, Selection];
+    const components = [Blank, Header, GridView, RowScrollBar, ColScrollBar, Selection, Input];
     for (let i = 0; i < components.length; i++) {
       const className = components[i].name;
       const component = new (components[i])(this);
@@ -110,3 +105,4 @@ export default class Datasheet {
   }
 
 }
+module.exports = Datasheet;

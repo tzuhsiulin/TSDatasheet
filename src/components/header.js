@@ -1,11 +1,11 @@
-import "../styles/header.scss";
+require("../styles/header.scss");
 
-import { elt } from "../utils/dom";
-import { numToAlphabet } from "../utils/utils";
+const { elt } = require("../utils/dom");
+const { numToAlphabet } = require("../utils/utils");
 
-export const prefix = "TSDatasheet-header";
+const prefix = "TSDatasheet-header";
 
-export class Header {
+class Header {
 
   constructor(ds) {
     this.ds = ds;
@@ -75,3 +75,4 @@ export class Header {
   }
 
 }
+exports.Header = Header;

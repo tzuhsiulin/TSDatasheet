@@ -1,9 +1,11 @@
-import "../styles/scrollbar.scss";
+require("../styles/scrollbar.scss");
 
-import { elt } from "../utils/dom";
+const { elt } = require("../utils/dom");
 
-export const rowPrefix = "TSDatasheet-row-scrollbar";
-export class RowScrollBar {
+const rowPrefix = "TSDatasheet-row-scrollbar";
+const colPrefix = "TSDatasheet-col-scrollbar";
+
+class RowScrollBar {
 
   constructor(ds) {
     this.ds = ds;
@@ -28,9 +30,9 @@ export class RowScrollBar {
   }
 
 }
+exports.RowScrollBar = RowScrollBar;
 
-export const colPrefix = "TSDatasheet-col-scrollbar";
-export class ColScrollBar {
+class ColScrollBar {
 
   constructor(ds) {
     this.ds = ds;
@@ -55,3 +57,4 @@ export class ColScrollBar {
   }
 
 }
+exports.ColScrollBar = ColScrollBar;

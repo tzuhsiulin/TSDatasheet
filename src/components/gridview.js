@@ -1,11 +1,11 @@
-import "../styles/gridview.scss";
+require("../styles/gridview.scss");
 
-import { elt } from "../utils/dom";
-import { Pos } from "../datasheet/pos";
+const { elt } = require("../utils/dom");
+const { Pos } = require("../datasheet/pos");
 
-export const prefix = "TSDatasheet-gridview";
+const prefix = "TSDatasheet-gridview";
 
-export class GridView {
+class GridView {
   constructor(ds) {
     this.ds = ds;
     this.gridview = null;
@@ -22,7 +22,10 @@ export class GridView {
       for (let j = 0; j < ds.visibleCount.col; j++) {
         const { width: cWidth, height: cHeight } = ds.getCellSize(new Pos(i, j));
         const cell = elt("td", { style: { minWidth: `${cWidth}px`, height: `${cHeight}px` } });
-        cell.addEventListener("click", e => ds.eventManager.signal("selectionChange", new Pos(i, j), e.target));
+        cell.addEventListener("click", e => {
+          e.preventDefault();
+          ds.eventManager.signal("selectionChange", e.target, new Pos(i, j));
+        });
         this.cells.push(cell);
       }
       trItems.push(elt("tr", null, this.cells));
@@ -43,3 +46,4 @@ export class GridView {
   }
 
 }
+exports.GridView = GridView;

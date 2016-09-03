@@ -1,5 +1,5 @@
 
-export class Pos {
+class Pos {
 
   constructor(x, y) {
     this.x = x;
@@ -7,3 +7,4 @@ export class Pos {
   }
 
 }
+exports.Pos = Pos;

@@ -1,8 +1,8 @@
-import "../styles/blank.scss";
+require("../styles/blank.scss");
 
-import { elt } from "../utils/dom";
+const { elt } = require("../utils/dom");
 
-export class Blank {
+class Blank {
 
   constructor(ds) {
     this.ds = ds;
@@ -56,3 +56,4 @@ export class Blank {
   }
 
 }
+exports.Blank = Blank;

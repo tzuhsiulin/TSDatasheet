@@ -1,9 +1,10 @@
 
-export class EventManager {
+class EventManager {
 
   constructor() {
     this.events = {
-      "selectionChange": [],
+      selectionChange: [],
+      dblclick: [],
     };
   }
 
@@ -23,3 +24,4 @@ export class EventManager {
   }
 
 }
+exports.EventManager = EventManager;
